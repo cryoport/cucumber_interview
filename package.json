@@ -1,0 +1,32 @@
+{
+    "name": "mini-cart-api",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "node app.js",
+        "pretest": "node scripts/ensure-artifacts.cjs",
+        "test:run": "cucumber-js --require features/support/**/*.js --require features/steps/**/*.js --tags \"not @placeholder\" --format json:artifacts/cucumber-report.json --publish-quiet",
+        "report": "node scripts/generate-report.cjs",
+        "test": "start-server-and-test dev http://localhost:3000 \"npm run test:run; npm run report\"",
+        "pretest:headed": "node scripts/ensure-artifacts.cjs",
+        "test:headed:run": "HEADED=true cucumber-js --require features/support/**/*.js --require features/steps/**/*.js --tags \"not @placeholder\" --format json:artifacts/cucumber-report.json --publish-quiet",
+        "test:headed": "start-server-and-test dev http://localhost:3000 \"npm run test:headed:run; npm run report\"",
+        "pretest:headed:reuse": "node scripts/ensure-artifacts.cjs",
+        "test:headed:reuse:run": "HEADED=true REUSE_WINDOW=1 cucumber-js --require features/support/**/*.js --require features/steps/**/*.js --tags \"not @placeholder\" --format json:artifacts/cucumber-report.json --publish-quiet",
+        "test:headed:reuse": "start-server-and-test dev http://localhost:3000 \"npm run test:headed:reuse:run; npm run report\""
+    },
+    "dependencies": {
+        "body-parser": "^1.20.3",
+        "express": "^4.19.2",
+        "lodash": "^4.17.21",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {
+        "@cucumber/cucumber": "^11.2.0",
+        "chai": "^5.1.1",
+        "multiple-cucumber-html-reporter": "^3.7.0",
+        "node-fetch": "^3.3.2",
+        "playwright": "^1.46.0",
+        "start-server-and-test": "^2.0.3"
+    }
+}
